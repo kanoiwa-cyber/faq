@@ -164,42 +164,14 @@
   }
   footer{max-width:var(--maxw);margin:0 auto;padding:22px 20px 40px;color:var(--ink-soft);font-size:12.5px;text-align:center;}
 
-  /* ---- 資料ダウンロード ---- */
-  .dl-wrap{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px 22px;margin-bottom:30px;
-  }
-  .dl-wrap h2{font-size:15px;margin:0 0 6px;color:var(--brand-deep);letter-spacing:.04em;}
-  .dl-note{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px;}
-  .dl-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
-  .dl-list a{
-    display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);
-    border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;
-    transition:background .15s,border-color .15s;
-  }
-  .dl-list a:hover{background:var(--brand-soft);border-color:var(--accent);}
-  .dl-ic{
-    flex:none;width:44px;height:44px;border-radius:10px;background:var(--brand);color:#fff;
-    font-size:12px;font-weight:700;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;
-  }
-  .dl-tx{display:flex;flex-direction:column;line-height:1.5;}
-  .dl-tx strong{font-size:15.5px;font-weight:700;}
-  .dl-tx small{font-size:12.5px;color:var(--ink-soft);}
-
-  /* ---- 本文内のPDFリンク ---- */
-  .pdf-link{
-    display:inline-flex;align-items:center;gap:8px;margin-top:13px;
-    text-decoration:none;color:var(--brand-deep);font-weight:600;font-size:14.5px;
-    background:var(--brand-soft);border-radius:8px;padding:8px 13px;
-  }
-  .pdf-link:hover{background:#dcebf9;}
-  .pdf-link::before{content:"PDF";font-size:11px;font-weight:700;background:var(--brand);color:#fff;padding:2px 6px;border-radius:5px;}
-
-  /* ---- 料金表 ---- */
+  /* ---- 表 ---- */
   .price{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px;}
   .price th,.price td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
   .price thead th{background:var(--brand-soft);color:var(--brand-deep);font-weight:700;}
   .price td.yen{white-space:nowrap;text-align:right;font-weight:600;}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px;}
+  .table-scroll .price{margin-top:0;min-width:520px;}
+  .table-note{font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;}
 
 
   @media (max-width:640px){
@@ -214,7 +186,7 @@
   @media print{
     body{background:#fff;font-size:11pt;}
     .site-head{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 12px;}
-    .search-wrap,.toc,.dl-wrap,.chevron{display:none;}
+    .search-wrap,.toc,.chevron{display:none;}
     main{padding:14px 0;}
     details.qa{break-inside:avoid;border:1px solid #bbb;box-shadow:none;margin-bottom:6px;}
     details.qa[open]{box-shadow:none;}
@@ -263,18 +235,6 @@
       <li><a href="#c8">その他のご案内</a></li>
     </ol>
   </nav>
-
-  <!-- 資料ダウンロード -->
-  <section class="dl-wrap" aria-label="資料ダウンロード">
-    <h2>資料ダウンロード（PDF）</h2>
-    <p class="dl-note">詳しい内容は、以下のPDFをダウンロードしてご確認いただけます。</p>
-    <ul class="dl-list">
-      <li><a href="shinryo-annai.pdf" target="_blank" rel="noopener"><span class="dl-ic">PDF</span><span class="dl-tx"><strong>診療案内</strong><small>診療科ごとの受付時間・診療日・担当医のご案内</small></span></a></li>
-      <li><a href="nyuin-annai.pdf" target="_blank" rel="noopener"><span class="dl-ic">PDF</span><span class="dl-tx"><strong>入院のご案内（長期入院用）</strong><small>入院当日の流れ・持ち物・入院生活・費用など</small></span></a></li>
-      <li><a href="amenity.pdf" target="_blank" rel="noopener"><span class="dl-ic">PDF</span><span class="dl-tx"><strong>アメニティセットのご案内</strong><small>入院用品レンタル（寝巻・タオル・日用品・紙おむつ）</small></span></a></li>
-      <li><a href="tokutei-kenshin.pdf" target="_blank" rel="noopener"><span class="dl-ic">PDF</span><span class="dl-tx"><strong>特定健診のご案内（健診結果の見かた）</strong><small>メタボと生活習慣病、健診結果の読み方・特定保健指導</small></span></a></li>
-    </ul>
-  </section>
 
   <!-- ============ 1 ============ -->
   <section class="category" id="c1">
@@ -328,10 +288,36 @@
       </div>
     </details>
 
-    <details class="qa"><summary class="q"><span class="q-badge">Q</span><span class="q-text">診療科ごとの受付時間・診療日・担当医を詳しく知りたいです。</span><span class="chevron"></span></summary>
+    <details class="qa"><summary class="q"><span class="q-badge">Q</span><span class="q-text">診療科ごとの受付時間・診療日を知りたいです。</span><span class="chevron"></span></summary>
       <div class="a">
-        <p>診療科ごとの受付時間・診療日・担当医師は、「診療案内」にまとめています。眼科は予約制で、整形外科の午後（スポーツ・関節・膝・肩・脊椎・股関節など）は完全予約制です。診療日や担当医に変更があった場合は、院内掲示板でお知らせします。</p>
-        <a class="pdf-link" href="shinryo-annai.pdf" target="_blank" rel="noopener">診療案内をダウンロード</a>
+        <p>受付時間は原則、午前 8:30〜11:30／午後 13:30〜15:30 です（※印は例外）。診療科ごとの診療日は次のとおりです。眼科は予約制、整形外科の午後（専門外来）は完全予約制です。</p>
+        <div class="table-scroll">
+        <table class="price">
+          <thead><tr><th>診療科</th><th>午前の診療日</th><th>午後の診療日</th></tr></thead>
+          <tbody>
+            <tr><td>循環器内科</td><td>月・火・水・木・金／土（第2・4週）</td><td>月・水・木・金</td></tr>
+            <tr><td>呼吸器内科</td><td>月・火・水・木・金</td><td>金（予約のみ）</td></tr>
+            <tr><td>リウマチ・膠原病内科</td><td>月・水・木・土</td><td>火・金／水（禁煙外来）</td></tr>
+            <tr><td>消化器内科</td><td>木・土（※〜11:00）</td><td>―</td></tr>
+            <tr><td>糖尿病内科</td><td>毎日</td><td>―</td></tr>
+            <tr><td>腎臓内科</td><td>毎日</td><td>―</td></tr>
+            <tr><td>一般内科</td><td>月</td><td>月・木（※〜16:00）</td></tr>
+            <tr><td>外科・消化器外科</td><td>毎日</td><td>月・火・水・木（※木：乳腺・ストーマ、火：予約制）</td></tr>
+            <tr><td>整形外科（一般）</td><td>毎日（※火：中澤医師 予約外受付10:00迄）</td><td>―</td></tr>
+            <tr><td>整形外科（専門・完全予約制）</td><td>―</td><td>スポーツ：月／関節：火／骨粗鬆症：火・水／膝：水／肩・膝・足・スポーツ：金（第1・3・5週）／脊椎：火・木（第2・4週）／股関節：金</td></tr>
+            <tr><td>脳神経外科</td><td>月・火・水・金／土（第1・3・5週）</td><td>―</td></tr>
+            <tr><td>神経内科</td><td>火・木</td><td>―</td></tr>
+            <tr><td>眼科 ※予約制</td><td>月・火・木／水（〜10:30）／土（第2・4週）</td><td>金</td></tr>
+            <tr><td>婦人科</td><td>月・火・水・木・金／土（第1・3週）</td><td>月・火・水・木・金（※予約は〜16:30）</td></tr>
+            <tr><td>泌尿器科</td><td>月・火・水・木・金／土（第1・3・5週）※再診のみ完全予約制</td><td>―</td></tr>
+            <tr><td>透析アクセス外来</td><td>月・火・水・木・金</td><td>月（第1・3・5週）・水・木・金</td></tr>
+            <tr><td>皮膚科</td><td>月・水</td><td>―</td></tr>
+            <tr><td>形成外科</td><td>木</td><td>―</td></tr>
+            <tr><td>耳鼻咽喉科</td><td>月・水・土</td><td>―</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="table-note">※担当医は学会や都合により変更になる場合があります。診療日や担当医の変更は院内掲示板でお知らせします。担当医のお名前は受付でもご案内します。</p>
         <div class="callout">急患の場合はこの限りではありません。お急ぎのときはお電話（0553-22-2511）でご相談ください。</div>
       </div>
     </details>
@@ -498,7 +484,6 @@
     <details class="qa"><summary class="q"><span class="q-badge">Q</span><span class="q-text">入院や退院後のことで相談したいときは？</span><span class="chevron"></span></summary>
       <div class="a">
         <p>「患者相談窓口」（患者支援センター内）で、入院中の不安や退院後の療養生活に関するご相談を承っています。受付は月〜金 8:30〜17:15、土 8:30〜12:00、電話 0553-22-2511（代表）です。正面玄関ロビーや各階に「ご意見箱」も設置しています。</p>
-        <a class="pdf-link" href="nyuin-annai.pdf" target="_blank" rel="noopener">入院のご案内（長期入院用）をダウンロード</a>
       </div>
     </details>
   </section>
@@ -522,7 +507,6 @@
           </tbody>
         </table>
         <p>共通日用品（ティッシュ・スリッパ・コップ・歯ブラシ・口腔ケア用品・入れ歯ケースなど）は、お申し込みの方が必要なものを自由に選んでご利用いただけます。紙おむつのタイプは、利用状況に応じて病棟看護師が毎日決定・変更します。</p>
-        <a class="pdf-link" href="amenity.pdf" target="_blank" rel="noopener">アメニティセットのご案内をダウンロード</a>
       </div>
     </details>
 
@@ -592,7 +576,6 @@
       <div class="a">
         <p>特定健診は、自覚症状が少ないまま進行する「生活習慣病」や、その前段階である「メタボリックシンドローム（メタボ）」を早めに見つけ、改善につなげるための健診です。腹囲・血圧・血糖・脂質などを調べます。</p>
         <p>結果に応じて、専門職（医師・保健師・管理栄養士など）が生活習慣づくりをサポートする「特定保健指導」を受けられます。「受けたからまあいいや」で終わらせず、ご自身の健康状態を知って役立てることが大切です。</p>
-        <a class="pdf-link" href="tokutei-kenshin.pdf" target="_blank" rel="noopener">特定健診のご案内をダウンロード</a>
       </div>
     </details>
 
@@ -606,8 +589,7 @@
     <details class="qa"><summary class="q"><span class="q-badge">Q</span><span class="q-text">健診結果の見方（数値の意味）がわかりません。</span><span class="chevron"></span></summary>
       <div class="a">
         <p>健診結果には、検査項目ごとに「基準範囲」「保健指導判定値」「受診勧奨判定値（医療機関の受診をおすすめする値）」が示されています。腹囲・BMI、血圧、肝機能、脂質、腎機能、血糖、貧血などの項目があり、それぞれ体のどこに関わるかがわかります。</p>
-        <p>数値の見方や各項目の意味は、「特定健診のご案内（健診結果の見かた）」でわかりやすく説明しています。気になる項目があるときや、結果の見方がわからないときは、健康管理室や受付にお気軽にご相談ください。</p>
-        <a class="pdf-link" href="tokutei-kenshin.pdf" target="_blank" rel="noopener">健診結果の見かたをダウンロード</a>
+        <p>数値の見方や各項目の意味がわからないときは、健康管理室や受付にお気軽にご相談ください。結果票の項目に沿って、わかりやすくご説明します。</p>
         <div class="callout">これは一般的な目安のご案内です。数値の判断や必要な検査については、自己判断せず医師にご相談ください。</div>
       </div>
     </details>
